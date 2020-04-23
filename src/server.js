@@ -6,10 +6,12 @@ import { getConfig } from './config/ConfigurationManager';
 
 const config = getConfig();
 const app = express();
+/** @type {*} */
+const corsMiddleware = cors;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(corsMiddleware());
 app.use(routers);
 app.listen(config.port, () => {
     console.log(`Server started on port ${config.port}`);
