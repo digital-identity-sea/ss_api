@@ -1,8 +1,5 @@
 import express from 'express';
+import path from 'path';
 const router = express.Router();
-router.get('/', (req, res) => {
-    res.json({
-        status: 'ok',
-    });
-});
+router.use('/', express.static(path.join(__dirname, '../../doc')));
 export default router;

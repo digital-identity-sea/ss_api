@@ -6,12 +6,14 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "test:watch": "mocha src/test --reporter min -w --recursive --require esm",
-        "start": "nodemon src/index.js"
+        "start": "nodemon src/index.js",
+        "generate:docs": "apidoc -i src/api/ -o doc/"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "apidoc": "^0.20.1",
         "body-parser": "^1.19.0",
         "chai": "^4.2.0",
         "cors": "^2.8.5",
@@ -27,5 +29,9 @@
         "@types/helmet": "0.0.45",
         "@types/node": "^13.13.2",
         "nodemon": "^2.0.3"
+    },
+    "apidoc": {
+        "title": "Digital Signature Documentation",
+        "url": "https://digitalidentity.com"
     }
 }
