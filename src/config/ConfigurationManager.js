@@ -5,5 +5,6 @@ export function getConfig() {
     return {
         node_env: env.NODE_ENV,
         port: env.PORT,
+        encyption_key: env.ENCRYPTION_KEY,
     };
 }
