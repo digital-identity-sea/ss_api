@@ -2,29 +2,30 @@ import crypto from 'crypto';
 export function createEncryptor(ENCRYPTION_KEY) {
     return {
         /**
-         * @param {Buffer} text
+         * Encrypt data
+         * @param {Buffer} decryptedData
          */
-        encode: async (text) => {
+        encode: async (decryptedData) => {
             var crypto = require('crypto');
             var iv = crypto.randomBytes(64).toString('hex').slice(0, 16);
-            var mykey = crypto.createCipheriv('aes-256-cbc', ENCRYPTION_KEY, iv);
-            var encryptedData = mykey.update(text);
-            encryptedData = Buffer.concat([encryptedData, mykey.final()]);
+            var cipher = crypto.createCipheriv('aes-256-cbc', ENCRYPTION_KEY, iv);
+            var encryptedData = cipher.update(decryptedData);
+            encryptedData = Buffer.concat([encryptedData, cipher.final()]);
             return {
                 iv,
                 encryptedData,
             };
         },
         /**
-         * @param {Buffer} encryptedText
+         * Decrypt encrypted data
+         * @param {Buffer} encryptedData
          * @param {string} iv
          */
-        decode: async (encryptedText, iv) => {
-            // let encryptedText = Buffer.from(text, 'hex');
+        decode: async (encryptedData, iv) => {
             let decipher = crypto.createDecipheriv('aes-256-cbc', ENCRYPTION_KEY, iv);
-            let decrypted = decipher.update(encryptedText);
-            decrypted = Buffer.concat([decrypted, decipher.final()]);
-            return decrypted;
+            let decryptedData = decipher.update(encryptedData);
+            decryptedData = Buffer.concat([decryptedData, decipher.final()]);
+            return decryptedData;
         },
     };
 }
