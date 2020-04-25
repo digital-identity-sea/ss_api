@@ -6,7 +6,7 @@
     "scripts": {
         "test": "mocha src/test --recursive --require esm",
         "test:watch": "mocha src/test --reporter min -w --recursive --require esm",
-        "start": "nodemon src/index.js",
+        "start": "nodemon --inspect src/index.js",
         "generate:docs": "apidoc -i src/api/ -o doc/"
     },
     "keywords": [],
