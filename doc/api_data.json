@@ -15,13 +15,20 @@
             "optional": false,
             "field": "fullName",
             "description": "<p>Full name of the user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "dateOfBirth",
+            "description": "<p>The date of birth of the user in YYYY-MM-DD format</p>"
           }
         ]
       },
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"fullName\" : \"John Doe\"\n}",
+          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"dateOfBirth\": \"1983-10-11\"\n}",
           "type": "json"
         }
       ]
