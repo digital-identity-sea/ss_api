@@ -18,8 +18,18 @@ export default function makeEncryptionService() {
                 encryptedData: encodingResult.encryptedData.toString(encryptedDataEncoding),
                 encryptedDataEncoding,
                 email,
-                encryptionKey,
             };
+        },
+        /**
+         * @param {EncryptedProfile} profile
+         * @param {string} encryptionKey
+         */
+        decryptUserProfile: async (profile, encryptionKey) => {
+            const { iv, encryptedData } = profile;
+            const encryptedDataEncoding = profile.encryptedDataEncoding;
+            const decryptor = Lib.encryption.createEncryptor(encryptionKey);
+            const decodedData = await decryptor.decode(Buffer.from(encryptedData, encryptedDataEncoding), iv);
+            return JSON.parse(decodedData.toString());
         },
     };
 }

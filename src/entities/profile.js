@@ -14,10 +14,18 @@ export class Profile {
 export class EncryptedProfile {
     /** @type {string} */
     iv;
-    /** @type {string} */
+    /** @type {'hex' | 'binary' | 'ascii'} */
     encryptedDataEncoding;
     /** @type {string} */
     encryptedData;
+    /** @type {string} */
+    email;
+}
+
+/**
+ * The info required to decrypt a profile
+ */
+export class DecryptInfo {
     /** @type {string} */
     email;
     /** @type {string} */

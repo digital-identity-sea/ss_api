@@ -12,21 +12,43 @@ export default function makeUserService() {
          */
         async createUser(profile) {
             const { email } = profile;
-            let currentProfileRaw = await new Promise((resolve, reject) => {
-                fs.readFile(TARGET_STORE, (err, data) => {
-                    err ? reject(err) : resolve(data.toString());
-                });
-            });
-            let currentProfile = JSON.parse(currentProfileRaw);
-            if (typeof currentProfile !== 'object') {
-                currentProfile = {};
+            let userStore = await getUserFileStore();
+            if (typeof userStore !== 'object') {
+                userStore = {};
             }
-            currentProfile[email] = profile;
-            await new Promise((resolve, reject) => {
-                fs.writeFile(TARGET_STORE, JSON.stringify(currentProfile, null, 2), (err, data) => {
-                    err ? reject(err) : resolve(data);
-                });
-            });
+            userStore[email] = profile;
+            await saveDataToStore(userStore);
+        },
+        /**
+         * Get a user's profile by string
+         * @param {string} email
+         * @returns {Promise<EncryptedProfile>}
+         */
+        async getUserProfileByEmail(email) {
+            const userStore = await getUserFileStore();
+            let profile = userStore[email];
+            return profile;
         },
     };
+}
+
+async function getUserFileStore() {
+    let store = {};
+    let storeData = await new Promise((resolve, reject) => {
+        fs.readFile(TARGET_STORE, (err, data) => {
+            err ? reject(err) : resolve(data.toString());
+        });
+    });
+    try {
+        store = JSON.parse(storeData);
+    } catch (err) {}
+    return store;
+}
+
+async function saveDataToStore(data) {
+    await new Promise((resolve, reject) => {
+        fs.writeFile(TARGET_STORE, JSON.stringify(data, null, 2), (err, data) => {
+            err ? reject(err) : resolve(data);
+        });
+    });
 }
