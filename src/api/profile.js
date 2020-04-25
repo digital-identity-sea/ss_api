@@ -1,4 +1,5 @@
 import express from 'express';
+import Controllers from '../controllers';
 const router = express.Router();
 /**
  *
@@ -28,6 +29,8 @@ const router = express.Router();
  *
  */
 router.post('/create', async (req, res) => {
+    const userProfile = req.body;
+    await Controllers.user.createUserProfile(req, userProfile);
     res.json({
         status: 'ok',
     });
