@@ -30,7 +30,13 @@
 -   Development mode auto restart with nodemon
     -   Run the command `npm run start`
 
-## Planned Features (Not Implemented)
+## Architecture
+
+-   Clean Architecture
+-   Dependency Injection
+
+## Planned Features (Not Implemented Yet)
 
 -   Implementation of SSL for domain
 -   Dockerization
+-   Usage of a proper backend database (MySQL / NoSQL)
