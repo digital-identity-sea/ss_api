@@ -7,6 +7,14 @@
 ## Installation
 
 -   Run `npm install` to install dependencies
+-   Create a .env file with the following configuration
+
+    ```dotnev
+    NODE_ENV=development
+    PORT=8081
+    ENCRYPTION_KEY=bPeShVmYq3s6v9y$B&E)H@McQfTjWnZr
+    ```
+
 -   Run `npm run start` to start the server
 -   If you are doing development, run `npm run test:watch` to automatically run test cases on save
 
@@ -22,3 +30,8 @@
     -   Run the command `npm run test:watch` and it will execute and report errors only
 -   Development mode auto restart with nodemon
     -   Run the command `npm run start`
+
+## Planned Features (Not Implemented)
+
+-   Implementation of SSL for domain
+-   Dockerization
