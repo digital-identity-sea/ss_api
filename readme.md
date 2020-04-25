@@ -12,7 +12,6 @@
     ```dotnev
     NODE_ENV=development
     PORT=8081
-    ENCRYPTION_KEY=bPeShVmYq3s6v9y$B&E)H@McQfTjWnZr
     ```
 
 -   Run `npm run start` to start the server

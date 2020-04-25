@@ -1,13 +1,13 @@
 import { assert } from 'chai';
 import '../../helpers/test/setup';
-import { createEncryptor } from '../../lib/encryption';
+import { createEncryptor, generateEncryptionKey } from '../../lib/encryption';
 import crypto from 'crypto';
 import { getConfig } from '../../config/ConfigurationManager';
 import fs from 'fs';
 import path from 'path';
 describe('Encryption', () => {
     it('Encodes and decodes data correctly', async () => {
-        const encryptionKey = getConfig().encyption_key;
+        const encryptionKey = await generateEncryptionKey();
         let data = Buffer.from('abc123');
         const encrpytor = createEncryptor(encryptionKey);
         const { encryptedData, iv } = await encrpytor.encode(data);
@@ -22,7 +22,7 @@ describe('Encryption', () => {
                 err ? reject(err) : resolve(data);
             });
         });
-        const encryptionKey = getConfig().encyption_key;
+        const encryptionKey = await generateEncryptionKey();
         const encrpytor = createEncryptor(encryptionKey);
         const { encryptedData, iv } = await encrpytor.encode(data);
         const decryptedData = await encrpytor.decode(encryptedData, iv);

@@ -1,5 +1,44 @@
 define({ "api": [
   {
+    "type": "get",
+    "url": "/encryption/generate-key",
+    "title": "Generate Encryption Key",
+    "name": "EncryptionGenerateKey",
+    "group": "Encryption",
+    "version": "1.0.0",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "encryptionKey",
+            "description": "<p>Generated hexadecimal key (64 characters)</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"encryptionKey\" : \"bPeShVmYq3s6v9y$B&E)H@McQfTjWnZr\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/api/encryption.js",
+    "groupTitle": "Encryption"
+  },
+  {
     "type": "post",
     "url": "/profile/create",
     "title": "Create Profile",
