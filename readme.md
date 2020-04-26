@@ -32,7 +32,7 @@
 
 ## Architecture
 
--   Clean Architecture
+-   Clean Architecture (Adapted)
 -   Dependency Injection
 
 ## Planned Features (Not Implemented Yet)

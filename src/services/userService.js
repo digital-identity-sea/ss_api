@@ -20,11 +20,12 @@ export default function makeUserService() {
         },
         /**
          * @param {EncryptedProfile} profile
-         * @param {GrantConfiguration} grantConfigurationg
+         * @param {GrantConfiguration} grantConfiguration
+         * @param {string} encryptionKey
          */
-        async grantAccess(profile, grantConfiguration) {
+        async grantAccess(profile, grantConfiguration, encryptionKey) {
             const accessGrantId = uuid.v4();
-            await GrantStore.insertGrant({ ...profile, ...grantConfiguration, accessGrantId });
+            await GrantStore.insertGrant({ ...profile, ...grantConfiguration, accessGrantId, encryptionKey });
             return {
                 ...profile,
                 accessGrantId,

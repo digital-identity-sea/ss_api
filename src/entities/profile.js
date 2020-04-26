@@ -7,8 +7,6 @@ export class Profile {
     email;
     /** @type {string} */
     phoneMobile;
-    /** @type {string} */
-    encryptionKey;
     constructor(props) {
         Object.assign(this, props);
     }
@@ -28,6 +26,29 @@ export class EncryptedProfile {
     }
 }
 
+export class EncryptedGrant {
+    /** @type {string} */
+    accessGrantId;
+    /** @type {string} */
+    encryptionKey;
+    // Grant Config
+    /** @type {string} */
+    expiryDate;
+    /** @type {boolean} */
+    deleteAfterAccessed;
+    // Encrypted Profile
+    /** @type {string} */
+    iv;
+    /** @type {'hex' | 'binary' | 'ascii'} */
+    encryptedDataEncoding;
+    /** @type {string} */
+    encryptedData;
+    /** @type {string} */
+    email;
+    constructor(props) {
+        Object.assign(this, props);
+    }
+}
 export class SharedProfile {
     /** @type {string} */
     fullName;

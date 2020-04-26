@@ -33,6 +33,6 @@
     },
     "apidoc": {
         "title": "Digital Signature Documentation",
-        "url": "https://digitalidentity.com"
+        "url": "http://localhost:8081"
     }
 }

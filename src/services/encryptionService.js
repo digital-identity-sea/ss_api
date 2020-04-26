@@ -5,12 +5,13 @@ export default function makeEncryptionService() {
         /**
          * Generates an encrypted version of a user's profile
          * @param {Profile} profile
+         * @param {string} encryptionKey
          * @returns {Promise<EncryptedProfile>}
          */
-        encryptUserProfile: async (profile) => {
+        encryptUserProfile: async (profile, encryptionKey) => {
             const encryptedDataEncoding = 'hex';
-            const { fullName, dateOfBirth, email, phoneMobile, encryptionKey } = profile;
-            const encryptor = Lib.encryption.createEncryptor(profile.encryptionKey);
+            const { fullName, dateOfBirth, email, phoneMobile } = profile;
+            const encryptor = Lib.encryption.createEncryptor(encryptionKey);
             const data = Buffer.from(JSON.stringify({ fullName, dateOfBirth, email, phoneMobile }));
             const encodingResult = await encryptor.encode(data);
             return {
@@ -29,7 +30,8 @@ export default function makeEncryptionService() {
             const encryptedDataEncoding = profile.encryptedDataEncoding;
             const decryptor = Lib.encryption.createEncryptor(encryptionKey);
             const decodedData = await decryptor.decode(Buffer.from(encryptedData, encryptedDataEncoding), iv);
-            return JSON.parse(decodedData.toString());
+            const data = JSON.parse(decodedData.toString());
+            return new Profile(data);
         },
         /**
          * Generates an encryption key

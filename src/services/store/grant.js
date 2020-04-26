@@ -1,12 +1,14 @@
 import fs from 'fs';
 import path from 'path';
+import { EncryptedGrant } from '../../entities/profile';
+
 const FILEPATH_STORE = path.resolve(path.join(__dirname, '../../../data/grant.json'));
 if (!fs.existsSync(FILEPATH_STORE)) {
     fs.writeFileSync(FILEPATH_STORE, '{}');
 }
 const stores = {
     /**
-     * @param {*} profile
+     * @param {EncryptedGrant} profile
      */
     insertGrant: async (profile) => {
         const id = profile.accessGrantId;
@@ -14,6 +16,9 @@ const stores = {
         store[id] = profile;
         await write(store);
     },
+    /**
+     * @returns {Promise<EncryptedGrant>}
+     */
     getGrant: async (id) => {
         const store = await load();
         return store[id];

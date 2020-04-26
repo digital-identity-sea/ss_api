@@ -6,9 +6,10 @@ export default function makeUserController(services) {
         /**
          * @param {*} req
          * @param {import('../entities/profile').Profile} profile
+         * @param {string} encryptionKey
          */
-        createUserProfile: async (req, profile) => {
-            const encryptedUserProfile = await services.encryption.encryptUserProfile(profile);
+        createUserProfile: async (req, profile, encryptionKey) => {
+            const encryptedUserProfile = await services.encryption.encryptUserProfile(profile, encryptionKey);
             await services.user.createUser(encryptedUserProfile);
         },
         /**
@@ -27,15 +28,13 @@ export default function makeUserController(services) {
          * @param {import('../entities/profile').GrantConfiguration} grantConfiguration
          */
         grantUserProfileAccess: async (req, sharedProfile, grantConfiguration) => {
-            // const {} = grantConfiguration;
             const encryptionKey = await services.encryption.generateEncryptionKey();
             /** @type {Profile} */
             const profile = {
                 ...sharedProfile,
-                encryptionKey,
             };
-            const encryptedUserProfile = await services.encryption.encryptUserProfile(profile);
-            const grant = await services.user.grantAccess(encryptedUserProfile, grantConfiguration);
+            const encryptedUserProfile = await services.encryption.encryptUserProfile(profile, encryptionKey);
+            const grant = await services.user.grantAccess(encryptedUserProfile, grantConfiguration, encryptionKey);
             return grant;
         },
     };

@@ -39,6 +39,56 @@
     "groupTitle": "Encryption"
   },
   {
+    "type": "get",
+    "url": "/grant/get",
+    "title": "Get Grant",
+    "name": "GetGrant",
+    "group": "Grant",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "accessGrantId",
+            "description": "<p>ID of the grant</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"accessGrantId\" : \"5cc17dd9-2d39-4fb7-befa-fae4febd7f4f\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "type",
+            "optional": false,
+            "field": "name",
+            "description": "<p>description</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"email\" : \"johndoe@example.com\",\n    \"dateOfBirth\" : \"01/01/1989\",\n    \"phoneMobile\" : \"+6592847283\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/api/grant.js",
+    "groupTitle": "Grant"
+  },
+  {
     "type": "post",
     "url": "/profile/create",
     "title": "Create Profile",

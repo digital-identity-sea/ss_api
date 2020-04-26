@@ -37,7 +37,8 @@ const router = express.Router();
  */
 router.post('/create', async (req, res) => {
     const userProfile = req.body;
-    await Controllers.user.createUserProfile(req, userProfile);
+    const { encryptionKey, ...profile } = userProfile;
+    await Controllers.user.createUserProfile(req, profile, encryptionKey);
     res.json({
         status: 'ok',
     });
