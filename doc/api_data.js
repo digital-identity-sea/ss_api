@@ -258,7 +258,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"accessGrantId\": \"johndoe@example.com\",\n}",
+          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"email\" : \"johndoe@example.com\",\n    \"dateOfBirth\" : \"01/01/1989\",\n    \"phoneMobile\" : \"+6592847283\",\n}",
           "type": "json"
         }
       ]
@@ -278,7 +278,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"email\" : \"johndoe@example.com\",\n    \"dateOfBirth\" : \"01/01/1989\",\n    \"phoneMobile\" : \"+6592847283\",\n}",
+          "content": "{\n    \"accessGrantId\": \"5cc17dd9-2d39-4fb7-befa-fae4febd7f4f\",\n}",
           "type": "json"
         }
       ]

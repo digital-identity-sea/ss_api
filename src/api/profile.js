@@ -102,16 +102,16 @@ router.post('/decrypt', async (req, res) => {
  *
  * @apiParamExample  {json} Request-Example:
  * {
- *     "accessGrantId": "johndoe@example.com",
+ *     "fullName" : "John Doe",
+ *     "email" : "johndoe@example.com",
+ *     "dateOfBirth" : "01/01/1989",
+ *     "phoneMobile" : "+6592847283",
  * }
  *
  *
  * @apiSuccessExample {json} Success-Response:
  * {
- *     "fullName" : "John Doe",
- *     "email" : "johndoe@example.com",
- *     "dateOfBirth" : "01/01/1989",
- *     "phoneMobile" : "+6592847283",
+ *     "accessGrantId": "5cc17dd9-2d39-4fb7-befa-fae4febd7f4f",
  * }
  *
  *
