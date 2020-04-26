@@ -40,3 +40,4 @@
 -   Implementation of SSL for domain
 -   Dockerization
 -   Usage of a proper backend database (MySQL / NoSQL)
+-   Rate Limiting to prevent against brute force attacks

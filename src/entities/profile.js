@@ -9,6 +9,9 @@ export class Profile {
     phoneMobile;
     /** @type {string} */
     encryptionKey;
+    constructor(props) {
+        Object.assign(this, props);
+    }
 }
 
 export class EncryptedProfile {
@@ -20,6 +23,9 @@ export class EncryptedProfile {
     encryptedData;
     /** @type {string} */
     email;
+    constructor(props) {
+        Object.assign(this, props);
+    }
 }
 
 /**
@@ -30,4 +36,7 @@ export class DecryptInfo {
     email;
     /** @type {string} */
     encryptionKey;
+    constructor(props) {
+        Object.assign(this, props);
+    }
 }

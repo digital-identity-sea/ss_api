@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import '../../helpers/test/setup';
+import '../setup';
 import { createEncryptor, generateEncryptionKey } from '../../lib/encryption';
 import crypto from 'crypto';
 import { getConfig } from '../../config/ConfigurationManager';
