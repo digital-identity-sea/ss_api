@@ -2,7 +2,11 @@ import fs from 'fs';
 import path from 'path';
 import { EncryptedGrant } from '../../entities/profile';
 
-const FILEPATH_STORE = path.resolve(path.join(__dirname, '../../../data/grant.json'));
+const FILEPATH_DATA_FOLDER = path.resolve(path.join(__dirname, '../../../data'));
+const FILEPATH_STORE = path.join(FILEPATH_DATA_FOLDER, '/grant.json');
+if (!fs.existsSync(FILEPATH_DATA_FOLDER)) {
+    fs.mkdirSync(FILEPATH_DATA_FOLDER);
+}
 if (!fs.existsSync(FILEPATH_STORE)) {
     fs.writeFileSync(FILEPATH_STORE, '{}');
 }
@@ -21,7 +25,26 @@ const stores = {
      */
     getGrant: async (id) => {
         const store = await load();
-        return store[id];
+        const grant = store[id];
+        if (!grant) {
+            return null;
+        }
+        if (grant.deleteAfterAccessed) {
+            delete store[id];
+            await write(store);
+        }
+        if (grant.expiryDate) {
+            //We will use the server's timezone to check fo expiry
+            let expiry = new Date(grant.expiryDate);
+            expiry.setHours(23, 59, 59, 999); //Ensure that we have till the end of the day
+            let currentDate = new Date();
+            let currentTimestamp = currentDate.getTime();
+            let expiredTimestamp = expiry.getTime();
+            if (currentTimestamp > expiredTimestamp) {
+                return null;
+            }
+        }
+        return grant;
     },
 };
 

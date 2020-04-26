@@ -11,6 +11,9 @@ export default function makeGrantController(services) {
          */
         getProfileByGrantId: async (req, accessGrantId) => {
             const encryptedGrant = await services.grant.getGrantById(accessGrantId);
+            if (!encryptedGrant) {
+                return null; //No grant was found
+            }
             const { encryptionKey, expiryDate, deleteAfterAccessed, iv, encryptedData, encryptedDataEncoding, email } = encryptedGrant;
             const encryptedProfile = new EncryptedProfile({
                 iv,

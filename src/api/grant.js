@@ -32,7 +32,16 @@ const router = express.Router();
 
 router.get('/get', async (req, res) => {
     const { accessGrantId } = req.query;
-    const profile = await Controllers.grant.getProfileByGrantId(req, accessGrantId);
-    res.json(profile);
+    try {
+        const profile = await Controllers.grant.getProfileByGrantId(req, accessGrantId);
+        if (profile) {
+            res.json(profile);
+        } else {
+            res.json({ error: 'The profile you are trying to access does not exist!' });
+        }
+    } catch (err) {
+        res.status(500);
+        res.json({ error: err.message });
+    }
 });
 export default router;
