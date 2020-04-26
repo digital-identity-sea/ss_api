@@ -31,5 +31,11 @@ export default function makeEncryptionService() {
             const decodedData = await decryptor.decode(Buffer.from(encryptedData, encryptedDataEncoding), iv);
             return JSON.parse(decodedData.toString());
         },
+        /**
+         * Generates an encryption key
+         */
+        generateEncryptionKey: async () => {
+            return await Lib.encryption.generateEncryptionKey();
+        },
     };
 }

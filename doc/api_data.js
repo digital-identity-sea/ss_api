@@ -88,7 +88,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n    \"fullName\": \"John Doe\",\n    \"dateOfBirth\": \"1983-10-11\"\n}",
+          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"dateOfBirth\" : \"01/01/1989\",\n    \"email\" : \"johndoe@example.com\",\n    \"phoneMobile\": \"+6592847283\",\n    \"encryptionKey\": \"bPeShVmYq3s6v9y$B&E)H@McQfTjWnZr\",\n}",
           "type": "json"
         }
       ]
@@ -120,7 +120,7 @@ define({ "api": [
     "type": "post",
     "url": "/profile/decrypt",
     "title": "Decrypt Profile",
-    "name": "Decryptrofile",
+    "name": "DecryptProfile",
     "group": "Profile",
     "version": "1.0.0",
     "parameter": {
@@ -187,6 +187,91 @@ define({ "api": [
             "optional": false,
             "field": "encryptionKey",
             "description": "<p>64 hexadecimal encoded string</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n    \"fullName\" : \"John Doe\",\n    \"email\" : \"johndoe@example.com\",\n    \"dateOfBirth\" : \"01/01/1989\",\n    \"phoneMobile\" : \"+6592847283\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "src/api/profile.js",
+    "groupTitle": "Profile"
+  },
+  {
+    "type": "post",
+    "url": "/profile/grant-access",
+    "title": "Grant Access",
+    "name": "GrantAccessProfile",
+    "group": "Profile",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "fullName",
+            "description": "<p>Full name of the user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "dateOfBirth",
+            "description": "<p>The date of birth of the user in DD/MM/YYYY format</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email address of the user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "phoneMobile",
+            "description": "<p>Mobile phone number of the user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "expiryDate",
+            "description": "<p>Date of expiry of the granted access</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Boolean",
+            "optional": false,
+            "field": "deleteAfterAccessed",
+            "description": "<p>Delete once the profile has been accessed</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"accessGrantId\": \"johndoe@example.com\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "accessGrantId",
+            "description": "<p>The ID of the granted access</p>"
           }
         ]
       },

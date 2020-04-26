@@ -28,6 +28,24 @@ export class EncryptedProfile {
     }
 }
 
+export class SharedProfile {
+    /** @type {string} */
+    fullName;
+    /** @type {string} */
+    dateOfBirth;
+    /** @type {string} */
+    email;
+    /** @type {string} */
+    phoneMobile;
+}
+
+export class GrantConfiguration {
+    /** @type {string} */
+    expiryDate;
+    /** @type {boolean} */
+    deleteAfterAccessed;
+}
+
 /**
  * The info required to decrypt a profile
  */

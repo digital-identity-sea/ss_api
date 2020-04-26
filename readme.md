@@ -41,3 +41,4 @@
 -   Dockerization
 -   Usage of a proper backend database (MySQL / NoSQL)
 -   Rate Limiting to prevent against brute force attacks
+-   API / Controller input validation & error handling
